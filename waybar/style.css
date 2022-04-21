@@ -1,0 +1,90 @@
+/*НАСТРОЙКИ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ*/
+* {
+    font-family: Roboto, Helvetica, Arial, sans-serif, otf-font-awesome; /*ШРИФТЫ*/
+    font-size: 20px; /*РАЗМЕР ШРИФТА*/
+    min-height: 0; /*МИНИМАЛЬНАЯ ВЫСОТА*/
+    border-radius: 0; /*СКРУГЛЕНИЕ*/
+}
+
+/*ПАНЕЛЬ*/
+window#waybar {
+    background-color: transparent; /*ЦВЕТ ФОНА*/
+    border-bottom: 0px solid #000000; /*РАМКА ВНИЗУ*/
+}
+
+/*КНОПКИ ВОРКСПЕЙСОВ*/
+#workspaces button {
+    padding: 0 5px; /*ВНУТРЕННИЙ ОТСТУП*/
+    margin: 0 0px; /*ВНЕШНИЙ ОТСТУП*/
+    border-right: 7px solid #ffffff; /*РАМКА СПРАВА*/
+    border-left: 7px solid #ffffff; /*РАМКА СЛЕВА*/
+    color: #8dd7fe; /*ЦВЕТ*/
+    background: #ffffff; /*ЦВЕТ ФОНА*/
+}
+
+/*КНОПКИ ВОРКСПЕЙСОВ ПРИ НАВЕДЕНИИ*/
+#workspaces button:hover {
+    color: #8dd7fe; /*ЦВЕТ*/
+    background: #ffffff; /*ЦВЕТ ФОНА*/
+    box-shadow: inset 0 -3px #8dd7fe; /*НАСТРОЙКА ПОЛОСКИ ПОД КНОПКОЙ*/
+}
+
+/*АКТИВНАЯ КНОПКА ВОРКСПЕЙСА*/
+#workspaces button.focused {
+    box-shadow: inset 0 -3px #35557c; /*НАСТРОЙКА ПОЛОСКИ ПОД КНОПКОЙ*/
+    color: #35557c; /*ЦВЕТ*/
+    background: #ffffff; /*ЦВЕТ ФОНА*/
+}
+
+/*КНОПКА ВОРКСПЕЙСА ТРЕБУЮЩАЯ ВНИМАНИЯ*/
+#workspaces button.urgent {
+    background-color: #eb4d4b; /*ЦВЕТ ФОНА*/
+}
+
+/*ФОНЫ ДЛЯ ЭЛЕМЕНТОВ ПАНЕЛИ, СНАЧАЛО ПЕРЕЧИСЛЕННЫ ВСЕ ЧЕРЕЗ ЗАПЯТУЮ, ПОТОМ ПРИСВОЕННЫ СВОЙСТВА. МОЖНО ДЛЯ КАЖДОГО ЭЛЕМЕНТА ТАК СДЕЛАТЬ, НО У МЕНЯ ОДИНАКОВЫЕ ДЛЯ ВСЕХ, ПОЭТОМУ ПРОЩЕ ОБЪЕДИНИТЬ В ГРУППУ.*/
+
+#clock, /*ЧАСЫ*/
+#pulseaudio, /*УРОВЕНЬ ЗВУКА*/
+#tray, /*ТРЕЙ*/
+#language, /*РАСКЛАДКА КЛАВИАТУРЫ*/
+#window, /*АКТИВНОЕ ПРИЛОЖЕНИЕ*/
+#taskbar, /*ТАСКБАР*/
+#cpu, /*ЗАГРУЖЕННОСТЬ ПРОЦЕССОРА*/
+#memory /*ЗАНЯТО ПАМЯТИ*/
+{
+    background: #ffffff; /*ЦВЕТ ФОНА*/
+    color: #35557c; /*ЦВЕТ*/
+    padding: 0 10px; /*ВНУТРЕННИЙ ОТСТУП*/
+    margin: 0 0px; /*ВНЕШНИЙ ОТСТУП*/
+}
+
+/*ТАСКБАР ПРИ НАВЕДЕНИИ*/
+#taskbar button:hover {
+    color: #ffebb8; /*ЦВЕТ*/
+    background: #ffffff; /*ЦВЕТ ФОНА*/
+    box-shadow: inset 0 -3px #8dd7fe; /*НАСТРОЙКА ПОЛОСКИ ПОД КНОПКОЙ*/
+}
+
+/*МОДУЛЬ CMUS*/
+#custom-cmus {
+    background-color: #ffffff; /*ЦВЕТ ФОНА*/
+    color: #35557c; /*ЦВЕТ*/
+    min-width: 350px; /*МИНИМАЛЬНАЯ ШИРИНА*/
+}
+
+/*НАСТРОЙКА СТРЕЛОК НА ПАНЕЛИ*/
+#custom-right,
+#custom-left {
+    font-size: 20px;  /*РАЗМЕР ШРИФТА*/
+    color: #ffffff;  /*ЦВЕТ*/
+    padding: 0 0px; /*ВНУТРЕННИЙ ОТСТУП*/
+    margin: 0 0px; /*ВНЕШНИЙ ОТСТУП*/
+}
+#custom-right2,
+#custom-left2 {
+    font-size: 20px;  /*РАЗМЕР ШРИФТА*/
+    color: #ffffff;  /*ЦВЕТ*/
+    background: #ffffff; /*ЦВЕТ ФОНА*/
+    padding: 0 0px; /*ВНУТРЕННИЙ ОТСТУП*/
+    margin: 0 0px; /*ВНЕШНИЙ ОТСТУП*/
+}
