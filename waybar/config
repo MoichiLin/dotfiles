@@ -1,0 +1,292 @@
+{
+//СЛОЙ НА КОТОРОМ БУДЕН НАХОДИТСЯ WAYBAR. ПО ДЕФОЛТУ НА САМОМ ВЕРХНЕМ:
+    // "layer": "top",
+
+//ПОЛОЖЕНИЕ ПАНЕЛИ НА ЭКРАНЕ TOP, BOTTOM, LEFT, RIGHT:
+    // "position": "bottom",
+
+//ВЫСОТА ПАНЕЛИ:
+    "height": 20,
+
+//ШИРИНА ПАНЕЛИ:
+     "width": 1920,
+
+//МОДУЛИ СЛЕВА, ПО ЦЕНТРУ, СПРАВА:
+    "modules-left": [
+"wlr/taskbar",
+"custom/right"
+//"custom/right2",
+//"custom/right",
+//"custom/right2",
+//"custom/right"
+    ],
+
+    "modules-center": [
+//"custom/left",
+//"custom/left2",
+//"custom/left",
+//"custom/left2",
+"custom/left",
+"clock",
+"custom/right"
+//"custom/right2",
+//"custom/right",
+//"custom/right2",
+//"custom/right"
+    ],
+
+    "modules-right": [
+//"custom/left",
+//"custom/left2",
+//"custom/left",
+//"custom/left2",
+"custom/left",
+"cpu",
+"custom/left2",
+"custom/left",
+"memory",
+"custom/left2",
+"custom/left",
+"pulseaudio"
+    ],
+
+
+      "sway/workspaces": {
+          "disable-scroll": true,
+          "all-outputs": true,
+          "format": "{name}",
+          "format-icons": {
+              "1": "",
+              "2": "",
+              "3": "",
+              "4": "",
+              "5": "",
+             "urgent": "",
+              "focused": "",
+               "default": ""
+          }
+      },
+
+
+//НАСТРОЙКА ПОВЕДЕНИЯ КНОПОК ПЕРЕКЛЮЧЕНИЯ ВОРКСПЕЙСОМ, ТРОГАТЬ ТОЛЬКО ЕСЛИ ДОФИГА УМНЫЙ:
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+//ОТОБРАЖЕНИЕ МОДУЛЯ MPD, ФОРМАТЫ И ИКОНКИ, ДУМАЮ САМ ДОГАДАЕШЬСЯ ЧТО ЕСТЬ ЧТО, Я ВОТ НЕ ОСИЛИЛ И ПОЛЬЗУЮСЬ CMUS:
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+
+//Я ТАК ПОНЯЛ ЧТО ЭТА ХРЕНЬ ДЛЯ БЛОКИРОВКИ МОНИТОРА:
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+
+//ТРЕЙ, РАЗМЕР ИКОНОК И РАСТОЯНИЕ МЕЖДУ НИМИ:
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+
+//ЧАСЫ, ВРЕМЕННАЯ ЗОНА, ФОРМАТ ОТОБРАЖЕНИЯ И ФОРМАТ ОТОБРАЖЕНИЯ ПОСЛЕ НАЖАТИЯ ЛКМ:
+    "clock": {
+        // "timezone": "America/New_York",
+        "format": "{:%A  %H:%M:%S  %m-%d-%Y}",
+    },
+
+
+//ОТОБРАЖЕНИЕ ЗАГРУЖЕННОСТИ ПРОЦЕССОРА, ФОРМАТ И ВСПЛЫВАЮЩАЯ ПОДСКАЗКА:
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+
+//ОТОБРАЖЕНИЕ КОЛИЧЕСТВА ПОЖИРАЕМОЙ ПАМЯТИ:
+    "memory": {
+        "format": "  {}%"
+    },
+
+//ОТОБРАЖЕНИЕ ИНФЫ С ТЕМПЕРАТУРНЫХ ДАТЧИКОВ, ТАКИХ МОДУЛЕЙ МОЖНО СДЕЛАТЬ НЕСКОЛЬКО И ВЫВЕСТИ НА ПАНЕЛЬ ВСЕ ДАТЧИКИ:
+    "temperature": {
+	//ВЫБОР ДАТЧИКА, ПОСМОТРЕТЬ ДАТЧИКИ МОЖНО ТАК: ls /sys/class/thermal/
+        // "thermal-zone": 2,
+	//ПУТЬ К ДЕРИКТОРИИ УСТРОЙСТВА, МОЖЕШЬ ПОШАРИТСЯ В /sys/class/hwmon/ И НАЙТИ НУЖНОЕ.
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+	//КРИТИЧЕСКИЙ ТЕМПЕРАТУРНЫЙ ПОРОГ, ПОСЛЕ ПРОХОЖДЕНИЯ КОТОРОГО WAYBAR ТЕБЕ НАМЕКНЕТ ЧТО ВСЕ ПЛОХО:
+        "critical-threshold": 80,
+	//СОБСТВЕННО ФОРМАТ ВЫВОДА ИНВЫ О ТОМ ЧТО СКОРО ТВОЯ СИСТЕМА РЕСТАРТАНЕТ И СБРОСИТ ЧАСТОТЫ:
+        // "format-critical": "{temperatureC}°C {icon}",
+	//ФОРМАТ ВЫВОДА ТЕМПЕРАТУРЫ, ТЕМПЕРАТУРА, ГРАДУС, ИКОНКА.
+        "format": "{temperatureC}°C {icon}",
+	//ФОРМАТ ИКОНКИ ТЕМПЕРАТУРЫ, ВЫБИРАЕТСЯ В ЗАВИСИМОСТИ ОТ ТЕМПЕРАТУРЫ
+        "format-icons": ["", "", ""]
+    },
+
+//ВЫВОД ЯРКОСТИ ДИСПЛЕЯ, ФОРМАТ ВЫВОДА И ФОРМАТ ИКОНКИ:
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+
+//РАСКЛАДКА КЛАВИАТУРЫ:
+	"sway/language": {
+		"format": "  {}",
+
+		"tooltip": false
+	},
+
+//ВЫВОД ЗАРЯДА БАТАРЕИ, ТУТ САМ ПОЙМЕШЬ ЧТО К ЧЕМУ, ОДНИ ФОРМАТЫ ВЫВОДА:
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+//АККУМУЛЯТОР ДЛЯ МОНИТОРА, ТОЛЬКО ЧТО УЗНАЛ ЧТО ТАКОЕ БЫВАЕТ, КОРОЧ ЯХЗ:
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+
+//ВЫВОД ИНФОРМАЦИИ О СЕТЕВЫХ ПОДКЛЮЧЕНИЯХ, ВЫБОР ИНТЕРФЕЙСА И ФОРМАТЫ ВЫВОДА:
+    "network": {
+        // "interface": "wlp2*",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+//ВЫВОД УРОВНЯ ГРОМКОСТИ С ПУЛЬСАУДИО, КОЛИЧЕСТВО ПРОЦЕНТОВ ПРИ СКРОЛЛЕ, ФОРМАТЫ ВЫВОДА И ЧТО ЗАПУСТИТЬ ПРИ КЛИКЕ ЛКМ:
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+//ОТОБРАЖЕНИЕ АКТИВНОГО ОКНА, ФОРМАТ, МАКСИМАЛЬНАЯ ДЛИНА, МИНИМАЛЬНАЯ ДЛИНА, ПОДЗКАЗКА ПРИ НАВЕДЕНИИ:
+        "sway/window": {
+                "format": "{}",
+		"max-length": 20,
+		"min-length": 20,
+		"tooltip": false
+	},
+
+//ТАСКБАР, ФОРМАТ, РАЗМЕР ИКОНОК, ТЕМА, ПОДЗКАЗКА...:
+"wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 16,
+    "icon-theme": "Papirus-Dark-Custom",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close"
+},
+
+//ПОДКЛЮЧЕНИЕ ДОПОЛНИТЕЛЬНЫХ МОДУЛЕЙ, ПРЕЖДЕ ЧЕМ ЧТО-ТО ГОРОДИТЬ ПОМОТРИ КАКИЕ ЕСТЬ ТУТ: https://github.com/Alexays/Waybar/wiki/Module:-Custom
+    "custom/cmus": {
+        "format": "  {}",
+        //"max-length": 15,
+        "interval": 10,
+        "exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
+        "exec-if": "pgrep cmus",
+        "on-click": "cmus-remote -u",                        //toggle pause
+        "escape": true                                       //handle markup entities
+    },
+//НА ВИКИ В МОДУЛЯХ НЕТ В МОДУЛЯХ ВОТ ЭТОЙ ЗАПЯТОЙ В КОНЦЕ, ЕСЛИ ЕЕ ТЕ БУДЕТ ТО WAYBAR НЕ ВЗЛЕТИТ!
+
+//ЭТО НУЖНО ДЛЯ ТОГО ЧТО БЫ СДЕЛАТЬ СТРЕЛОЧКИ НА ПАНЕЛИ:
+    "custom/left": {
+        "format": "",
+        "tooltip": false,
+    },
+
+    "custom/left2": {
+        "format": "",
+        "tooltip": false,
+    },
+
+    "custom/right": {
+        "format": "",
+        "tooltip": false,
+    },
+
+    "custom/right2": {
+        "format": "",
+        "tooltip": false,
+    },
+
+//ЧТО ТО НА ТЕХНИЧЕСКОМ, НЕ ТРОГАЙ ЭТО!
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+},
+
+    "custom/keyboard-layout": {
+      "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+      // Interval set only as a fallback, as the value is updated by signal
+      "interval": 30,
+      "format": "  {}", // Icon: keyboard
+      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
+      "signal": 1, // SIGHUP
+      "tooltip": false
+    },
+
+       "custom/clockx": {
+        // "timezone": "America/New_York",
+        "format": "{:%A  %H:%M:%S  %m-%d-%Y}",
+    },
