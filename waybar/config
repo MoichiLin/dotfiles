@@ -13,33 +13,43 @@
 
 //МОДУЛИ СЛЕВА, ПО ЦЕНТРУ, СПРАВА:
     "modules-left": [
+"custom/right2",
+"custom/right",
+"custom/right2",
 "wlr/taskbar",
+"custom/right",
+"custom/right2",
+"custom/right",
+"custom/right2",
+"tray",
+"custom/right",
+"custom/right2",
+"custom/right",
+"custom/right2",
 "custom/right"
-//"custom/right2",
-//"custom/right",
-//"custom/right2",
-//"custom/right"
     ],
 
     "modules-center": [
-//"custom/left",
-//"custom/left2",
-//"custom/left",
-//"custom/left2",
 "custom/left",
-"clock",
+"custom/left2",
+"custom/left",
+"clock#1",
+"custom/left2",
+"custom/left",
+"clock#2",
+"custom/right",
+"custom/right2",
+"clock#3",
+"custom/right",
+"custom/right2",
 "custom/right"
-//"custom/right2",
-//"custom/right",
-//"custom/right2",
-//"custom/right"
     ],
 
     "modules-right": [
-//"custom/left",
-//"custom/left2",
-//"custom/left",
-//"custom/left2",
+"custom/left",
+"custom/left2",
+"custom/left",
+"custom/left2",
 "custom/left",
 "cpu",
 "custom/left2",
@@ -47,9 +57,51 @@
 "memory",
 "custom/left2",
 "custom/left",
-"pulseaudio"
+"battery",
+"custom/left2",
+"custom/left",
+"pulseaudio",
+"custom/left2",
+"custom/left",
+"backlight",
+"custom/left2",
+"custom/left",
+"custom/left2"
     ],
 
+    "clock#1": {
+        "format": "{:%A}",
+        "tooltip": false
+    },
+    "clock#2": {
+        "format": "{:%H:%M:%S}",
+        "tooltip": false,
+        "interval": 1
+    },
+    "clock#3": {
+        "format": "{:%d/%m/%Y}",
+        "tooltip": false
+    },
+
+
+        "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
 
       "sway/workspaces": {
           "disable-scroll": true,
@@ -155,7 +207,7 @@
 //ВЫВОД ЯРКОСТИ ДИСПЛЕЯ, ФОРМАТ ВЫВОДА И ФОРМАТ ИКОНКИ:
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "format": "{icon} {percent}%",
         "format-icons": ["", ""]
     },
 
@@ -165,22 +217,6 @@
 
 		"tooltip": false
 	},
-
-//ВЫВОД ЗАРЯДА БАТАРЕИ, ТУТ САМ ПОЙМЕШЬ ЧТО К ЧЕМУ, ОДНИ ФОРМАТЫ ВЫВОДА:
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
 
 //АККУМУЛЯТОР ДЛЯ МОНИТОРА, ТОЛЬКО ЧТО УЗНАЛ ЧТО ТАКОЕ БЫВАЕТ, КОРОЧ ЯХЗ:
     "battery#bat2": {
@@ -290,3 +326,9 @@
         // "timezone": "America/New_York",
         "format": "{:%A  %H:%M:%S  %m-%d-%Y}",
     },
+
+//РАСКЛАДКА КЛАВИАТУРЫ:
+	"sway/language": {
+		"format": "  {}",
+		"tooltip": false
+	},
