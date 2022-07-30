@@ -8,7 +8,7 @@
 
 /*ПАНЕЛЬ*/
 window#waybar {
-    background-color: #f57d99; /*ЦВЕТ ФОНА*/
+    background-color: #ffb3da; /*ЦВЕТ ФОНА*/
     border-bottom: 0px solid #000000; /*РАМКА ВНИЗУ*/
 }
 
@@ -18,15 +18,15 @@ window#waybar {
     margin: 0 0px; /*ВНЕШНИЙ ОТСТУП*/
     border-right: 7px solid #ffffff; /*РАМКА СПРАВА*/
     border-left: 7px solid #ffffff; /*РАМКА СЛЕВА*/
-    color: #f57d99; /*ЦВЕТ*/
+    color: #ffb3da; /*ЦВЕТ*/
     background: #ffffff; /*ЦВЕТ ФОНА*/
 }
 
 /*КНОПКИ ВОРКСПЕЙСОВ ПРИ НАВЕДЕНИИ*/
 #workspaces button:hover {
-    color: #f57d99; /*ЦВЕТ*/
+    color: #ffb3da; /*ЦВЕТ*/
     background: #ffffff; /*ЦВЕТ ФОНА*/
-    box-shadow: inset 0 -3px #f57d99; /*НАСТРОЙКА ПОЛОСКИ ПОД КНОПКОЙ*/
+    box-shadow: inset 0 -3px #ffb3da; /*НАСТРОЙКА ПОЛОСКИ ПОД КНОПКОЙ*/
 }
 
 /*АКТИВНАЯ КНОПКА ВОРКСПЕЙСА*/
@@ -55,6 +55,7 @@ window#waybar {
 #clock#1,
 #clock#2,
 #clock#3,
+#network,
 #memory /*ЗАНЯТО ПАМЯТИ*/
 {
     background: #ffffff; /*ЦВЕТ ФОНА*/
@@ -88,7 +89,7 @@ window#waybar {
 #custom-right2,
 #custom-left2 {
     font-size: 20px;  /*РАЗМЕР ШРИФТА*/
-    color: #f57d99;  /*ЦВЕТ*/
+    color: #ffb3da;  /*ЦВЕТ*/
     background: #ffffff; /*ЦВЕТ ФОНА*/
     padding: 0 0px; /*ВНУТРЕННИЙ ОТСТУП*/
     margin: 0 0px; /*ВНЕШНИЙ ОТСТУП*/
