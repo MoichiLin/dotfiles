@@ -1,74 +1,102 @@
 {
-//СЛОЙ НА КОТОРОМ БУДЕН НАХОДИТСЯ WAYBAR. ПО ДЕФОЛТУ НА САМОМ ВЕРХНЕМ:
+//层:
     // "layer": "top",
 
-//ПОЛОЖЕНИЕ ПАНЕЛИ НА ЭКРАНЕ TOP, BOTTOM, LEFT, RIGHT:
+//位置 TOP, BOTTOM, LEFT, RIGHT:
     // "position": "bottom",
 
-//ВЫСОТА ПАНЕЛИ:
-    "height": 20,
+//高:
+    "height": 10,
 
-//ШИРИНА ПАНЕЛИ:
+//宽:
      "width": 1920,
 
-//МОДУЛИ СЛЕВА, ПО ЦЕНТРУ, СПРАВА:
-    "modules-left": [
-"custom/right2",
-"custom/right",
-"custom/right2",
+//左:
+"modules-left": [
+"custom/right","custom/right2",
 "wlr/taskbar",
-"custom/right",
-"custom/right2",
-"custom/right",
-"custom/right2",
+"custom/right","custom/right2",
 "tray",
-"custom/right",
-"custom/right2",
-"custom/right",
-"custom/right2",
-"custom/right"
+"custom/right","custom/right2",
+"network",
+"custom/right","custom/right2","custom/right","custom/right2","custom/right"
     ],
 
-    "modules-center": [
-"custom/left",
-"custom/left2",
-"custom/left",
+"modules-center": [
+"custom/left","custom/left2","custom/left",
 "clock#1",
-"custom/left2",
-"custom/left",
+"custom/left2","custom/left",
 "clock#2",
-"custom/right",
-"custom/right2",
+"custom/right","custom/right2",
 "clock#3",
-"custom/right",
-"custom/right2",
-"custom/right"
+"custom/right","custom/right2","custom/right"
     ],
 
-    "modules-right": [
-"custom/left",
-"custom/left2",
-"custom/left",
-"custom/left2",
-"custom/left",
+"modules-right": [
+"custom/left","custom/left2","custom/left","custom/left2","custom/left",
 "cpu",
-"custom/left2",
-"custom/left",
+"custom/left2","custom/left",
 "memory",
-"custom/left2",
-"custom/left",
+"custom/left2","custom/left",
 "battery",
-"custom/left2",
-"custom/left",
+"custom/left2","custom/left",
 "pulseaudio",
-"custom/left2",
-"custom/left",
+"custom/left2","custom/left",
 "backlight",
-"custom/left2",
-"custom/left",
-"custom/left2"
+"custom/left2","custom/left",
     ],
 
+
+//装饰
+    "custom/left": {
+        "format": "",
+        "tooltip": false,
+    },
+
+    "custom/left2": {
+        "format": "",
+        "tooltip": false,
+    },
+
+    "custom/right": {
+        "format": "",
+        "tooltip": false,
+    },
+
+    "custom/right2": {
+        "format": "",
+        "tooltip": false,
+    },
+
+//程序
+"wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 16,
+    "icon-theme": "Papirus-Dark-Custom",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close"
+},
+
+//拖盘
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+//网络
+"network": {
+    "interface": "wlan0", // This is the magic line
+    "format-wifi": " |  {bandwidthDownBits} |  {bandwidthUpBits}",
+    "format-ethernet": " |  {bandwidthDownBits} |  {bandwidthUpBits}",
+    "format-linked": "(No IP)",
+    "format-disconnected": "",
+    "on-click": "kitty -e nmtui",
+    "tooltip": false,
+    "interval": 5
+},
+
+//时间
     "clock#1": {
         "format": "{:%A}",
         "tooltip": false
@@ -79,11 +107,37 @@
         "interval": 1
     },
     "clock#3": {
-        "format": "{:%d/%m/%Y}",
+        "format": "{:%m/%d/%Y}",
         "tooltip": false
     },
 
+//CPU
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false
+    },
 
+//内存
+    "memory": {
+        "format": "  {}%"
+    },
+
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 80,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next"
+    },
+
+//电池
         "battery": {
         "states": {
             "good": 95,
@@ -103,6 +157,34 @@
         ]
     },
 
+//音频
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+//背光
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", ""]
+    },
+
       "sway/workspaces": {
           "disable-scroll": true,
           "all-outputs": true,
@@ -118,6 +200,11 @@
                "default": ""
           }
       },
+
+
+
+
+//以下并未使用
 
 
 //НАСТРОЙКА ПОВЕДЕНИЯ КНОПОК ПЕРЕКЛЮЧЕНИЯ ВОРКСПЕЙСОМ, ТРОГАТЬ ТОЛЬКО ЕСЛИ ДОФИГА УМНЫЙ:
@@ -163,11 +250,7 @@
     },
 
 
-//ТРЕЙ, РАЗМЕР ИКОНОК И РАСТОЯНИЕ МЕЖДУ НИМИ:
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
+
 
 
 //ЧАСЫ, ВРЕМЕННАЯ ЗОНА, ФОРМАТ ОТОБРАЖЕНИЯ И ФОРМАТ ОТОБРАЖЕНИЯ ПОСЛЕ НАЖАТИЯ ЛКМ:
@@ -177,16 +260,7 @@
     },
 
 
-//ОТОБРАЖЕНИЕ ЗАГРУЖЕННОСТИ ПРОЦЕССОРА, ФОРМАТ И ВСПЛЫВАЮЩАЯ ПОДСКАЗКА:
-    "cpu": {
-        "format": "  {usage}%",
-        "tooltip": false
-    },
 
-//ОТОБРАЖЕНИЕ КОЛИЧЕСТВА ПОЖИРАЕМОЙ ПАМЯТИ:
-    "memory": {
-        "format": "  {}%"
-    },
 
 //ОТОБРАЖЕНИЕ ИНФЫ С ТЕМПЕРАТУРНЫХ ДАТЧИКОВ, ТАКИХ МОДУЛЕЙ МОЖНО СДЕЛАТЬ НЕСКОЛЬКО И ВЫВЕСТИ НА ПАНЕЛЬ ВСЕ ДАТЧИКИ:
     "temperature": {
@@ -204,12 +278,7 @@
         "format-icons": ["", "", ""]
     },
 
-//ВЫВОД ЯРКОСТИ ДИСПЛЕЯ, ФОРМАТ ВЫВОДА И ФОРМАТ ИКОНКИ:
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", ""]
-    },
+
 
 //РАСКЛАДКА КЛАВИАТУРЫ:
 	"sway/language": {
@@ -223,36 +292,7 @@
         "bat": "BAT2"
     },
 
-//ВЫВОД ИНФОРМАЦИИ О СЕТЕВЫХ ПОДКЛЮЧЕНИЯХ, ВЫБОР ИНТЕРФЕЙСА И ФОРМАТЫ ВЫВОДА:
-    "network": {
-        // "interface": "wlp2*",
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
 
-//ВЫВОД УРОВНЯ ГРОМКОСТИ С ПУЛЬСАУДИО, КОЛИЧЕСТВО ПРОЦЕНТОВ ПРИ СКРОЛЛЕ, ФОРМАТЫ ВЫВОДА И ЧТО ЗАПУСТИТЬ ПРИ КЛИКЕ ЛКМ:
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
 
 //ОТОБРАЖЕНИЕ АКТИВНОГО ОКНА, ФОРМАТ, МАКСИМАЛЬНАЯ ДЛИНА, МИНИМАЛЬНАЯ ДЛИНА, ПОДЗКАЗКА ПРИ НАВЕДЕНИИ:
         "sway/window": {
@@ -262,15 +302,7 @@
 		"tooltip": false
 	},
 
-//ТАСКБАР, ФОРМАТ, РАЗМЕР ИКОНОК, ТЕМА, ПОДЗКАЗКА...:
-"wlr/taskbar": {
-    "format": "{icon}",
-    "icon-size": 16,
-    "icon-theme": "Papirus-Dark-Custom",
-    "tooltip-format": "{title}",
-    "on-click": "activate",
-    "on-click-middle": "close"
-},
+
 
 //ПОДКЛЮЧЕНИЕ ДОПОЛНИТЕЛЬНЫХ МОДУЛЕЙ, ПРЕЖДЕ ЧЕМ ЧТО-ТО ГОРОДИТЬ ПОМОТРИ КАКИЕ ЕСТЬ ТУТ: https://github.com/Alexays/Waybar/wiki/Module:-Custom
     "custom/cmus": {
@@ -284,26 +316,7 @@
     },
 //НА ВИКИ В МОДУЛЯХ НЕТ В МОДУЛЯХ ВОТ ЭТОЙ ЗАПЯТОЙ В КОНЦЕ, ЕСЛИ ЕЕ ТЕ БУДЕТ ТО WAYBAR НЕ ВЗЛЕТИТ!
 
-//ЭТО НУЖНО ДЛЯ ТОГО ЧТО БЫ СДЕЛАТЬ СТРЕЛОЧКИ НА ПАНЕЛИ:
-    "custom/left": {
-        "format": "",
-        "tooltip": false,
-    },
 
-    "custom/left2": {
-        "format": "",
-        "tooltip": false,
-    },
-
-    "custom/right": {
-        "format": "",
-        "tooltip": false,
-    },
-
-    "custom/right2": {
-        "format": "",
-        "tooltip": false,
-    },
 
 //ЧТО ТО НА ТЕХНИЧЕСКОМ, НЕ ТРОГАЙ ЭТО!
         "escape": true,
