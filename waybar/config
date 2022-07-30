@@ -93,7 +93,7 @@
     "format-disconnected": "",
     "on-click": "kitty -e nmtui",
     "tooltip": false,
-    "interval": 5
+    "interval": 1
 },
 
 //时间
