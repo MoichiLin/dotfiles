@@ -87,8 +87,8 @@
 //网络
 "network": {
     "interface": "wlan0", // This is the magic line
-    "format-wifi": " |  {bandwidthDownBits} |  {bandwidthUpBits}",
-    "format-ethernet": " |  {bandwidthDownBits} |  {bandwidthUpBits}",
+    "format-wifi": " |  {bandwidthDownBytes} |  {bandwidthUpBytes}",
+    "format-ethernet": " |  {bandwidthDownBytes} |  {bandwidthUpBytes}",
     "format-linked": "(No IP)",
     "format-disconnected": "",
     "on-click": "kitty -e nmtui",
