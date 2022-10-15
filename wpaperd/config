@@ -1,9 +1,9 @@
 [eDP-1]
-path = "/home/moichi//Moichi_Lin/wallpaper/swaybg/"
+path = "～/wallpaper/"
 apply-shadow = true
-duration = "5m"
+duration = "6m"
 
 [HDMI-A-1]
-path = "/home/moichi//Moichi_Lin/wallpaper/swaybg/"
+path = "～/wallpaper/"
 apply-shadow = true
-duration = "5m"
+duration = "6m"
