@@ -249,11 +249,6 @@ rule-providers:
 rules:
  - DOMAIN-SUFFIX,live-video.net,🎥 Stream
 
- - DOMAIN-SUFFIX,ikuuu.dev,DIRECT
- - DOMAIN-SUFFIX,teacat.cloud,💠 AllInOne
- - DOMAIN-SUFFIX,xn--4gq62f52gdss.com,💠 AllInOne
- - DOMAIN-SUFFIX,xn--mesv7f5toqlp.club,💠 AllInOne
-
  - DOMAIN-SUFFIX,steamgames.com,DIRECT
  - DOMAIN-SUFFIX,steamcontent.com,🎮 Steam-Download
  - DOMAIN-SUFFIX,steampipe.steamcontent.tnkjmec.com,🎮 Steam-Download
