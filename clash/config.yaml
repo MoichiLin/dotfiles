@@ -1,0 +1,303 @@
+port: 7890
+socks-port: 7891
+# Transparent proxy server port for Linux and macOS (Redirect TCP and TProxy UDP)
+# redir-port: 7892
+
+# Transparent proxy server port for Linux (TProxy TCP and TProxy UDP)
+tproxy-port: 7893
+
+# HTTP(S) and SOCKS4(A)/SOCKS5 server on the same port
+mixed-port: 7894
+
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  nameserver:
+    - 8.8.8.8
+    - 114.114.114.114
+  fallback:
+    - 8.8.8.8
+
+tun:
+  enable: true
+  stack: system # 或 gvisor
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true # auto set global route
+  auto-detect-interface: true # conflict with interface-name
+
+cfw-bypass:
+  - qq.com
+  - music.163.com
+  - "*.music.126.net"
+  - localhost
+  - 127.*
+  - 10.*
+  - 172.16.*
+  - 172.17.*
+  - 172.18.*
+  - 172.19.*
+  - 172.20.*
+  - 172.21.*
+  - 172.22.*
+  - 172.23.*
+  - 172.24.*
+  - 172.25.*
+  - 172.26.*
+  - 172.27.*
+  - 172.28.*
+  - 172.29.*
+  - 172.30.*
+  - 172.31.*
+  - 192.168.*
+  - <local>
+cfw-latency-timeout: 5000
+
+proxies:
+这里覆盖上你的节点配置
+
+proxy-groups:
+  - name: 🌏 MAIN
+    type: select
+    proxies:
+      - 你的最佳的几个节点
+
+  - name: 💠 AllInOne
+    type: select
+    proxies:
+      - 🌏 MAIN
+      - 🔰 机场1
+      - 🔰 机场2
+      - 🔰 机场3
+      - DIRECT
+
+  - name: 🧱 GFW
+    type: select
+    proxies:
+      - 💠 AllInOne
+      - 常用节点
+
+  - name: 📯 Telegram
+    type: select
+    proxies:
+      - 💠 AllInOne
+      - 常用节点
+
+  - name: 🇨🇳 Tld-Not-CN
+    type: select
+    proxies:
+      - 💠 AllInOne
+      - 常用节点
+
+  - name: 🌀 Google
+    type: select
+    proxies:
+      - 💠 AllInOne
+      - 常用节点
+
+  - name: 🎥 Stream
+    type: select
+    proxies:
+      - 🔰 机场1
+      - 🔰 机场2
+      - 🔰 机场3
+      - DIRECT
+
+  - name: 🔰 机场1
+    type: select
+    proxies:
+      - 节点
+
+  - name: 🔰 机场2
+    type: select
+    proxies:
+      - 节点
+
+  - name: 🔰 机场3
+    type: select
+    proxies:
+      - 节点
+
+  - name: 🐟 MIS
+    type: select
+    proxies:
+      - DIRECT
+      - 🔰 机场1
+      - 🔰 机场2
+      - 🔰 机场3
+
+  - name: 🎮 Steam-Download
+    type: select
+    proxies:
+      - DIRECT
+      - 你的众多常用节点
+
+  - name: 🇨🇳 China
+    type: select
+    proxies:
+      - DIRECT
+      - 🔰 机场1
+      - 🔰 机场2
+      - 🔰 机场3
+
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  google:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./ruleset/google.yaml
+    interval: 86400
+
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+
+  greatfire:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt"
+    path: ./ruleset/greatfire.yaml
+    interval: 86400
+
+  tld-not-cn:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+    path: ./ruleset/tld-not-cn.yaml
+    interval: 86400
+
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./ruleset/applications.yaml
+    interval: 86400
+
+
+rules:
+ - DOMAIN-SUFFIX,live-video.net,🎥 Stream
+
+ - DOMAIN-SUFFIX,ikuuu.dev,DIRECT
+ - DOMAIN-SUFFIX,teacat.cloud,💠 AllInOne
+ - DOMAIN-SUFFIX,xn--4gq62f52gdss.com,💠 AllInOne
+ - DOMAIN-SUFFIX,xn--mesv7f5toqlp.club,💠 AllInOne
+
+ - DOMAIN-SUFFIX,steamgames.com,DIRECT
+ - DOMAIN-SUFFIX,steamcontent.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steampipe.steamcontent.tnkjmec.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,st.dl.eccdnx.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,st.dl.bscstorage.net,🎮 Steam-Download
+ - DOMAIN-SUFFIX,st.dl.pinyuncloud.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,dl.steam.clngaa.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,cdn.mileweb.cs.steampowered.com.8686c.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,xz.pphimalayanrt.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,edge.steam-dns.top.comcast.net,🎮 Steam-Download
+ - DOMAIN-SUFFIX,edgecast.cdn.steampipe.steamcontent.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,google.cdn.steampipe.steamcontent.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,google2.cdn.steampipe.steamcontent.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,level3.cdn.steampipe.steamcontent.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.eca.qtlglb.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.naeu.qtlglb.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.ru.qtlglb.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.apac.qtlglb.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steampipe-kr.akamaized.net,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steampipe-partner.akamaized.net,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steampipe.akamaized.net,🎮 Steam-Download
+ - DOMAIN-SUFFIX,f3b7q2p3.ssl.hwcdn.net,🎮 Steam-Download
+ - DOMAIN-SUFFIX,telus.cdn.steampipe.steamcontent.com,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.cdn.on.net,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.cdn.orcon.net.nz,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.cdn.slingshot.co.nz,🎮 Steam-Download
+ - DOMAIN-SUFFIX,steam.cdn.webra.ru,🎮 Steam-Download
+
+
+ - DOMAIN,clash.razord.top,DIRECT
+ - DOMAIN,yacd.haishan.me,DIRECT
+ - RULE-SET,applications,DIRECT
+ - RULE-SET,private,DIRECT
+ - RULE-SET,reject,REJECT
+ - RULE-SET,icloud,DIRECT
+ - RULE-SET,apple,DIRECT
+ - RULE-SET,google,🌀 Google
+ - RULE-SET,proxy,💠 AllInOne
+ - RULE-SET,gfw,🧱 GFW
+ - RULE-SET,greatfire,🧱 GFW
+ - RULE-SET,tld-not-cn,🇨🇳 Tld-Not-CN
+ - RULE-SET,direct,DIRECT
+ - RULE-SET,lancidr,DIRECT
+ - RULE-SET,cncidr,DIRECT
+ - RULE-SET,telegramcidr,📯 Telegram
+
+ - MATCH,🐟 MIS
